@@ -1,0 +1,74 @@
+import getMeta from "./utils/getMeta";
+import getRoutes from "./utils/getRoutes";
+
+const meta = getMeta();
+
+export default {
+  // Global page headers (https://go.nuxtjs.dev/config-head)
+  target: 'static',
+  loading: false,
+  head: {
+    htmlAttrs: {
+      lang: "en",
+    },
+    title: "Moses Max Learning Nuxt",
+    meta: [
+      ...meta,
+      { charset: "utf-8" },
+      { name: "HandheldFriendly", content: "True" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { property: "og:site_name", content: "Moses Max" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
+  ]},
+
+  // Global CSS: https://go.nuxtjs.dev/config-css
+  css: ["@/assets/css/app.css"],
+
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  plugins: ["~/plugins/lazysizes.client.js"],
+
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  buildModules: [
+    // https://go.nuxtjs.dev/tailwindcss
+    "@nuxtjs/tailwindcss",
+    "@aceforth/nuxt-optimized-images",
+  ],
+
+  // Modules: https://go.nuxtjs.dev/config-modules
+  modules: [
+    // https://go.nuxtjs.dev/content
+    "@nuxt/content",
+    "@nuxtjs/sitemap",
+  ],
+
+  // Content module configuration: https://go.nuxtjs.dev/config-content
+  content: {},
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+    extend(config, { isDev, isClient, loaders: { vue } }) {
+      if (isClient) {
+        vue.transformAssetUrls.img = ["data-src", "src"];
+        vue.transformAssetUrls.source = ["data-srcset", "srcset"];
+      }
+    },
+  },
+
+  // Sitemap
+  sitemap: {
+    hostname: "",
+    routes() {
+      return getRoutes();
+    },
+  },
+
+  // Optimize Images
+  optimizedImages: {
+    optimizeImages: true,
+  },
+};
