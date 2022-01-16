@@ -1,5 +1,5 @@
 const type = "website";
-const url = "";
+const url = "https://mosessmax.com";
 const title = "";
 const description =
   "simplicity and minimalism.";

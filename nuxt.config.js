@@ -61,7 +61,7 @@ export default {
 
   // Sitemap
   sitemap: {
-    hostname: "",
+    hostname: "https://mosessmax.com",
     routes() {
       return getRoutes();
     },
